@@ -1,0 +1,39 @@
+{
+  "name": "@local/dsh-usage",
+  "version": "0.1.0",
+  "description": "Usage dashboard for DSH: tokens, calls, cache hits, latency, errors and cost per model, tool and session",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./dist/host.js",
+    "./client": "./client.js"
+  },
+  "files": [
+    "dist/host.js",
+    "client.js",
+    "cordis.patch.yml"
+  ],
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test --test-force-exit test/"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-ui-workspace"
+      ]
+    }
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "jsdom": "^30.1.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  }
+}
